@@ -13,7 +13,9 @@ npm run build      # production build in dist/ (static; host anywhere)
 npm test           # content-integrity and pun-engine tests
 ```
 
-No backend, login, API keys or paid services. Preferences, counters and recent cases are kept in `localStorage`.
+No backend, login, API keys or paid services.
+
+**Deployment:** `.github/workflows/deploy.yml` runs the tests, builds the site and publishes it to the `gh-pages` branch on every push to `main` or `aphis-assignment-machine`. To serve it, go to *Settings → Pages* and set *Source: Deploy from a branch → `gh-pages` / root*. The site then appears at `https://cjpaulphd.github.io/play/`. The build uses relative asset paths, so it works under any subpath. Preferences, counters and recent cases are kept in `localStorage`.
 
 ## Modes
 
