@@ -24,6 +24,11 @@ export const STATUSES: string[] = [
   'AWAITING WET SIGNATURE',
   'PENDING STAKEHOLDER INPUT',
   'APPROVED, SUBJECT TO CONDITIONS',
+  'UNDER OIRA REVIEW (DAY 89 OF 90)',
+  'AWAITING SENSITIVITY ANALYSIS',
+  'RETURNED: BASELINE UNCLEAR',
+  'PENDING ELASTICITY ESTIMATE',
+  'DISCOUNTED',
 ];
 
 /** Rotating messages shown on the machine display while reels spin. */
@@ -50,6 +55,18 @@ export const LOADING_MESSAGES: string[] = [
   'Interviewing the snail…',
   'Reviewing the review…',
   'Waiting for the elevator…',
+  'Discounting future snails…',
+  'Monetizing intangible benefits…',
+  'Selecting a baseline…',
+  'Re-selecting the baseline…',
+  'Running Monte Carlo (iteration 9,412 of 10,000)…',
+  'Checking the $100 million threshold…',
+  'Consulting Circular A-4 (which one?)…',
+  'Estimating willingness to pay…',
+  'Converting to 2026 dollars…',
+  'Annualizing…',
+  'Computing the deadweight loss…',
+  'Asking PPD…',
 ];
 
 export const CLASSIFICATIONS: string[] = [
@@ -74,6 +91,8 @@ export const OFFICES: string[] = [
   'the Subdivision of Supplemental Subdivisions',
   'the Office of the Deputy Assistant to the Assistant Deputy',
   'the Center for Advanced Stapling',
+  'the Office of Counterfactual Baselines',
+  'the Division of Sensitivity Analysis (very sensitive)',
 ];
 
 export const ROUTING_INITIALS: string[] = [
@@ -104,6 +123,10 @@ export const RARE_EVENTS = {
     title: 'EMERGENCY REGULATORY ALIGNMENT',
     subtitle: 'All three reels have achieved consensus. This has never happened before, and may be a clerical error.',
   },
+  pareto: {
+    title: 'PARETO IMPROVEMENT',
+    subtitle: 'Everyone is better off and no one is worse off. The economists have requested a recount.',
+  },
   reorg: {
     title: 'AGENCY REORGANIZATION IN PROGRESS',
     subtitle: 'Reel responsibilities are being realigned. Your assignment is unaffected. Probably.',
@@ -124,6 +147,7 @@ export const COMMITTEE_PARTS = {
 
 export const COMMITTEE_ORG_CHART: string[] = [
   'Committee on Committees',
+  'Working Group on the Social Discount Rate (2, 3 or 7 Percent, Pending)',
   'Subcommittee to Review the Committee on Committees',
   'Joint Working Group on Subcommittee Oversight',
   'Ad Hoc Panel on Whether This Needs a Panel',
@@ -154,5 +178,11 @@ export const TRIVIA: TriviaItem[] = [
   { id: 't-smokey', text: 'Not APHIS: Smokey Bear’s name and image are protected by a 1952 act of Congress and administered by the U.S. Forest Service.', sourceId: 'usfs-smokey' },
   { id: 't-bonsai', text: 'Not APHIS: the National Bonsai & Penjing Museum began with 53 bonsai given to the United States for the 1976 Bicentennial.', sourceId: 'ars-bonsai' },
   { id: 't-cites', text: 'CITES-listed plants entering the United States must come through a designated port, and APHIS operates plant inspection stations to examine them.', sourceId: 'cites' },
+  { id: 't-ppd', text: 'Within APHIS, Policy and Program Development provides policy analysis and budgetary and regulatory development for the agency.', sourceId: 'aphis-org' },
+  { id: 't-rulemaking', text: 'APHIS rulemaking guidance calls for a proposed rule’s Federal Register summary to include an analysis of its expected economic effects.', sourceId: 'aphis-rulemaking' },
+  { id: 't-12866', text: 'Executive Order 12866 treats a rule with an annual effect on the economy of $100 million or more as a significant regulatory action that warrants a fuller benefit-cost analysis.', sourceId: 'eo-12866' },
+  { id: 't-a4', text: 'OMB’s 2003 Circular A-4 told agencies to report benefits and costs at both 3% and 7% discount rates. A 2023 revision moved to a 2% default; a 2025 directive called for returning to the 2003 version.', sourceId: 'a4-2003' },
+  { id: 't-rfa', text: 'Under the Regulatory Flexibility Act, agencies must analyze a proposed rule’s effects on small entities, or certify that it will not have a significant impact on a substantial number of them.', sourceId: 'rfa' },
+  { id: 't-swine-cost', text: 'Feral swine cause an estimated $2.5 billion in damages and control costs in the United States each year, according to APHIS’s National Wildlife Research Center.', sourceId: 'swine-nwrc' },
   { id: 't-hawaii', text: 'APHIS inspects passenger bags traveling from Hawaii to the U.S. mainland, Alaska and Guam before departure.', sourceId: 'hawaii' },
 ];

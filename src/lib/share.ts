@@ -4,6 +4,7 @@ import { formatBurden } from './assignment';
 
 export function modeLabel(a: Assignment): string {
   if (a.mode === 'real') return 'SURPRISINGLY REAL — based on actual APHIS activities';
+  if (a.mode === 'ppd') return 'PPD ECONOMIC ANALYSIS — Hypothetical Assignment, Fictional Figures, Not Actual Federal Policy';
   if (a.mode === 'extended') return `USDA EXTENDED UNIVERSE — not an APHIS responsibility (${a.curated?.agency ?? 'USDA'})`;
   return 'MAXIMUM BUREAUCRACY — Hypothetical Assignment, Not Actual Federal Policy';
 }

@@ -69,7 +69,9 @@ export function SlotMachine({ assignment, mode, spinId, spinning, compact, reduc
         ? 'ASSIGNMENT ISSUED — SEE CASE FILE BELOW'
         : mode === 'real'
           ? 'SURPRISINGLY REAL MODE — PULL LEVER'
-          : mode === 'chaos'
+          : mode === 'ppd'
+            ? 'PPD ECONOMIC ANALYSIS MODE — PULL LEVER'
+            : mode === 'chaos'
             ? 'MAXIMUM BUREAUCRACY MODE — PULL LEVER'
             : 'USDA EXTENDED UNIVERSE — PULL LEVER';
 

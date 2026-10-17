@@ -21,7 +21,19 @@ No backend, login, API keys or paid services. Preferences, counters and recent c
 |---|---|---|
 | **Surprisingly Real** | Picks one complete, sourced case from `src/data/cases.ts`. Never recombines parts. | Includes an “Actual Federal Concern” panel with sources |
 | **Maximum Bureaucracy** | Picks each reel independently, weighted toward absurd entries | “Hypothetical Assignment — Not Actual Federal Policy” |
+| **PPD Economic Analysis** | Independent reels tilted toward applied economics (discount-rate disputes, moving baselines, monetizing vibes); econ-flavored puns preferred | Hypothetical; every figure fictional |
 | **USDA Extended Universe** | Unlocks after 5 assignments. Real cases from AMS, ARS and the Forest Service | Names the responsible agency |
+
+## PPD Economic Analysis Addendum
+
+Every case file includes a fictional preliminary regulatory impact analysis, made in honor of APHIS Policy and Program Development. The inputs are invented, seeded per case so they stay stable, but the arithmetic is real:
+
+- 10-year ledger with present values, annualized net benefits (capital recovery factor), NPV and a benefit-cost ratio
+- Discount-rate toggle: 2% (2023 Circular A-4), or 3% and 7% (2003 Circular A-4)
+- One-at-a-time ±30% sensitivity analysis drawn as a tornado chart, plus one clearly fictional parameter
+- E.O. 12866 significance check against the $100 million threshold, a Regulatory Flexibility Act determination, the Paperwork Reduction Act burden and unquantified benefits and costs
+
+Two real PPD-themed cases (E.O. 12866 regulatory impact analysis and the Regulatory Flexibility Act) appear in Surprisingly Real mode. Several real cases carry a sourced **PPD Economic Footnote**, such as APHIS's estimate of about $2.5B a year in feral swine damage and control costs. The math lives in `src/lib/econ.ts` and is tested in `src/__tests__/econ.test.ts`.
 
 ## Project layout
 
@@ -67,7 +79,7 @@ Factual text appears only in the “Actual Federal Concern”, “Did you really
 ## Fun extras
 
 - **Space** pulls the lever and **R** asks for a revised finding. The lever can also be dragged or clicked.
-- Rare events: *Interagency Jackpot*, *Emergency Regulatory Alignment* and *Agency Reorganization*. To preview one, add `?event=jackpot`, `?event=alignment` or `?event=reorg` to the URL.
+- Rare events: *Interagency Jackpot*, *Emergency Regulatory Alignment*, *Pareto Improvement* (PPD mode) and *Agency Reorganization*. To preview one, add `?event=jackpot|alignment|pareto|reorg` to the URL.
 - Click the emblem five times.
 - Respects `prefers-reduced-motion`.
 

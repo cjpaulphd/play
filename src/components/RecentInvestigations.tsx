@@ -4,7 +4,7 @@ import { PROBLEM_BY_ID } from '../data/problems';
 import { OBJECTIVE_BY_ID } from '../data/objectives';
 import type { StoredAssignment } from '../types';
 
-const MODE_TAG: Record<StoredAssignment['mode'], string> = { real: 'REAL', chaos: 'HYPO', extended: 'EXT' };
+const MODE_TAG: Record<StoredAssignment['mode'], string> = { real: 'REAL', ppd: 'PPD', chaos: 'HYPO', extended: 'EXT' };
 
 export function RecentInvestigations({ items, onOpen, currentKey }: { items: StoredAssignment[]; onOpen: (s: StoredAssignment) => void; currentKey?: string }) {
   if (items.length === 0) return null;

@@ -15,6 +15,7 @@ import { TriviaCard } from './components/TriviaCard';
 import { RARE_EVENTS, TRIVIA } from './data/bureaucracy';
 import { forcedEvent, fromStored, RARE_ODDS, rollAssignment, toStored } from './lib/assignment';
 import { useMediaQuery } from './lib/hooks';
+import { econInputs, evaluate } from './lib/econ';
 import { generatePun } from './lib/punEngine';
 import { chance, randomInt, ShuffleBag } from './lib/random';
 import { caseFileText, copyText, shareText } from './lib/share';
@@ -25,6 +26,8 @@ import type { Assignment, GameMode, PunResult, StoredAssignment, TriviaItem } fr
 interface Counters {
   issued: number;
   hours: number;
+  /** Fictional NPV at 7%, $ millions, summed across assignments. */
+  npv?: number;
 }
 
 const TRIVIA_EVERY = 4;
@@ -65,7 +68,7 @@ export default function App() {
 
   // Surprises
   const [reorg, setReorg] = useState(false);
-  const [rare, setRare] = useState<{ kind: 'jackpot' | 'alignment'; key: string } | null>(null);
+  const [rare, setRare] = useState<{ kind: 'jackpot' | 'alignment' | 'pareto'; key: string } | null>(null);
   const [trivia, setTrivia] = useState<TriviaItem | null>(null);
   const triviaBag = useRef(new ShuffleBag(TRIVIA));
   const [easter, setEaster] = useState(false);
@@ -104,7 +107,8 @@ export default function App() {
     if (!a) return;
     pending.current = null;
 
-    const pun = generatePun({ subject: a.subject, problem: a.problem, objective: a.objective }, { recent: recentPunIds });
+    const pun = generatePun({ subject: a.subject, problem: a.problem, objective: a.objective }, { recent: recentPunIds, mode: a.mode });
+    const npv = evaluate(econInputs(a), 0.07).npv;
     setResult({ assignment: a, pun });
     setShownPunIds([pun.id]);
     setRevision(0);
@@ -114,7 +118,11 @@ export default function App() {
 
     const issued = counters.issued + 1;
     const staff = 2 + randomInt(6);
-    setCounters((c) => ({ issued: c.issued + 1, hours: Math.round((c.hours + (a.burdenMinutes / 60) * staff) * 10) / 10 }));
+    setCounters((c) => ({
+      issued: c.issued + 1,
+      hours: Math.round((c.hours + (a.burdenMinutes / 60) * staff) * 10) / 10,
+      npv: (c.npv ?? 0) + npv,
+    }));
 
     setAnnouncement(
       `New assignment issued. Case file ${a.caseNumber}. Subject: ${a.subject.name}. Regulatory concern: ${a.problem.text}. Assigned mission: ${a.objective.text}. Official pun determination: ${pun.text}`,
@@ -159,7 +167,7 @@ export default function App() {
   const revise = useCallback(() => {
     if (!result || spinning) return;
     const { assignment: a } = result;
-    const pun = generatePun({ subject: a.subject, problem: a.problem, objective: a.objective }, { recent: recentPunIds, exclude: shownPunIds });
+    const pun = generatePun({ subject: a.subject, problem: a.problem, objective: a.objective }, { recent: recentPunIds, exclude: shownPunIds, mode: a.mode });
     sfx.paper();
     setResult({ assignment: a, pun });
     setShownPunIds((s) => [...s, pun.id]);
@@ -264,6 +272,7 @@ export default function App() {
             disabled={spinning}
             issued={counters.issued}
             staffHours={counters.hours}
+            netBenefits={counters.npv ?? 0}
           />
 
           <div id="machine" ref={machineRef} className="scroll-mt-4">

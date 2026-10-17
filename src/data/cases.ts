@@ -48,6 +48,7 @@ export const CURATED_CASES: CuratedCase[] = [
     fact: 'The Japanese beetle quarantine in 7 CFR 301.48 aims to keep beetles from hitchhiking on aircraft to protected western states, including Arizona, California, Colorado, Idaho, Montana, Nevada, Oregon, Utah and Washington. Aircraft from regulated airports may need inspection, treatment or safeguarded loading.',
     obscureDetail: 'Among the regulatory options: loading aircraft only at night, or inside a beetle-free hangar.',
     sourceIds: ['jb', 'cfr-301-f'],
+    econNote: { text: 'USDA’s Agricultural Research Service has reported that more than $450 million a year is spent controlling Japanese beetles and replacing the plants they damage.', sourceIds: ['jb-ars'] },
   },
   {
     id: 'c-slf', mode: 'real', agency: 'APHIS', program: 'Plant Protection and Quarantine',
@@ -62,6 +63,7 @@ export const CURATED_CASES: CuratedCase[] = [
     fact: 'Congress funded APHIS in 2014 to create the National Feral Swine Damage Management Program, which protects agriculture, natural resources, property and animal and human health. APHIS reports that feral swine have been eliminated from several states since the program began.',
     obscureDetail: 'Feral swine are also sampled for early detection of foreign animal diseases such as African swine fever and classical swine fever.',
     sourceIds: ['swine', 'swine-history'],
+    econNote: { text: 'APHIS’s National Wildlife Research Center estimates that feral swine cause about $2.5 billion in damages and control costs in the United States each year, with at least $800 million of that directly in agriculture.', sourceIds: ['swine-nwrc'] },
   },
   {
     id: 'c-citrus', mode: 'real', agency: 'APHIS', program: 'Plant Protection and Quarantine',
@@ -102,6 +104,7 @@ export const CURATED_CASES: CuratedCase[] = [
     fact: 'Each year APHIS distributes oral rabies vaccine baits in parts of the eastern United States to stop raccoon rabies from spreading into the central U.S. Baits are dropped by airplane over rural areas and placed by helicopter, vehicle or bait station in suburban and urban areas.',
     obscureDetail: 'APHIS asks people who find a bait to leave it alone; pets and people cannot get rabies from contact with the bait.',
     sourceIds: ['orv'],
+    econNote: { text: 'APHIS estimates that rabies detection, prevention and control may cost more than $500 million a year in the United States — the kind of avoided cost that shows up on the benefits side of the ledger.', sourceIds: ['orv'] },
   },
   {
     id: 'c-starling', mode: 'real', agency: 'APHIS', program: 'Wildlife Services',
@@ -170,6 +173,21 @@ export const CURATED_CASES: CuratedCase[] = [
     fact: 'The federal bee import regulations in 7 CFR part 322 cover more than honey bees: one subpart addresses the importation of “bees other than honeybees” from approved regions, alongside adult honey bees and honey bee germplasm.',
     obscureDetail: 'Bee germplasm (semen) has its own import pathway, and it may come from a longer list of countries than live adult bees.',
     sourceIds: ['cfr-322', 'bees'],
+  },
+  // ================= REGULATORY ECONOMICS (PPD) =================
+  {
+    id: 'c-ria', mode: 'real', agency: 'APHIS', program: 'Policy and Program Development',
+    subjectId: 'proposed-rule', problemId: 'p-ria-threshold', objectiveId: 'o-ria',
+    fact: 'Executive Order 12866 directs agencies to assess the costs and benefits of significant regulatory actions. A rule with an annual effect on the economy of $100 million or more gets a fuller analysis, including an assessment of reasonably feasible alternatives. At APHIS, Policy and Program Development provides policy analysis and regulatory development, and APHIS rulemaking guidance calls for an analysis of a proposed rule’s expected economic effects.',
+    obscureDetail: 'The discount rate has had a busy few years. OMB’s 2003 Circular A-4 told agencies to report results at both 3% and 7%. A 2023 revision set a 2% default, and in 2025 the White House directed OMB to return to the 2003 version. Separately, a 2023 order that raised the $100 million threshold to $200 million was revoked in 2025.',
+    sourceIds: ['eo-12866', 'aphis-org', 'aphis-rulemaking', 'a4-2003', 'a4-2023', 'a4-2025', 'eo-14148'],
+  },
+  {
+    id: 'c-rfa', mode: 'real', agency: 'APHIS', program: 'Policy and Program Development',
+    subjectId: 'small-entity', problemId: 'p-small-impact', objectiveId: 'o-irfa',
+    fact: 'Under the Regulatory Flexibility Act, when a proposed rule would affect small entities — small businesses, small nonprofits and small governments — an agency must prepare an initial regulatory flexibility analysis, consider less burdensome alternatives and make the analysis available for public comment. An agency can instead certify that a rule will not have a significant impact on a substantial number of small entities.',
+    obscureDetail: 'An agency that wants to use its own definition of “small business” instead of the SBA’s size standards must consult with the SBA’s Office of Advocacy.',
+    sourceIds: ['rfa', 'rfa-faq'],
   },
   // ================= USDA EXTENDED UNIVERSE (not APHIS) =================
   {

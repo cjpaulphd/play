@@ -136,6 +136,17 @@ const BESPOKE: Bespoke[] = [
     'Bumble along — but with paperwork.',
     'Import status: buzz-ness as usual, under the subpart for bees other than honey bees.',
   ]],
+  // ---------- Regulatory economics (PPD) ----------
+  ['proposed-rule', 'p-ria-threshold', 'o-ria', [
+    'One hundred million dollars a year. The rule has officially become economically significant, and the economists have officially stopped making weekend plans.',
+    'Benefits, costs, alternatives, discount rates and a sensitivity analysis. The rule is 40 pages; the regulatory impact analysis is 140. This is called proportionality.',
+    'The rule asked whether it was significant. PPD ran the numbers and said, gently, “Yes. Sit down.”',
+  ]],
+  ['small-entity', 'p-small-impact', 'o-irfa', [
+    'A significant impact on a substantial number of small entities: the regulatory equivalent of stepping on a Lego.',
+    'The small entity has been analyzed, considered and offered less burdensome alternatives. It would also like a less burdensome analysis.',
+    'Certification was considered and declined. The initial regulatory flexibility analysis is flexible in name only.',
+  ]],
   // ---------- USDA Extended Universe ----------
   ['asparagus', 'p-asp-diameter', 'o-asp-grade', [
     'An exceptionally spears-ific federal concern. We’re determined to get to the stalk of the matter.',
@@ -290,6 +301,22 @@ const BY_SUBJECT: Record<string, string[]> = {
     'Regulation the goldfish has been notified of {P}. It has already forgotten, which the office envies.',
     'A fishy situation. The agency will {O}, and Regulation will swim one thoughtful circle about it.',
     'Regulation has lived in the break room for eleven years and has never once missed a meeting.',
+  ],
+  'proposed-rule': [
+    'The proposed rule has been informed of {P}. It has responded with a 90-page preamble and a request for comment.',
+    'Officials will {O}. The proposed rule will be proposed, re-proposed and, eventually, finalized by someone’s successor.',
+  ],
+  'small-entity': [
+    'The small entity has been notified of {P}. It is small, but it has feelings.',
+    'Officials will {O}, mindful that the small entity is, by definition, short-staffed.',
+  ],
+  'discount-rate': [
+    'The discount rate was asked about {P}. It said the problem matters less every year, which is not the comfort it thinks it is.',
+    'Officials will {O}, applying the discount rate to everything except their own patience.',
+  ],
+  baseline: [
+    'Absent {P}, the baseline insists, everything would have been fine. The baseline says that about everything.',
+    'Officials will {O}, once the baseline stops moving long enough to be measured.',
   ],
   asparagus: [
     'An exceptionally spears-ific concern: {P}. Officials will get to the stalk of the matter.',
@@ -447,6 +474,89 @@ const GENERIC: string[] = [
   '{S} has been issued a case number, which is the first step toward being taken seriously.',
 ];
 
+
+/**
+ * Applied-economics material, in honor of APHIS Policy and Program Development.
+ * Flavored 'econ' so PPD Economic Analysis mode can favor it.
+ */
+const ECON_BY_SUBJECT: Record<string, string[]> = {
+  gas: [
+    'The snail’s benefits accrue in Year 10. Its costs accrue immediately. The discount rate has feelings about this.',
+    'At current velocity, the snail’s arrival has a present value indistinguishable from its absence. PPD recommends not relying on that.',
+  ],
+  bts: ['The treesnake imposes a classic negative externality: it boards for free, and the island pays.'],
+  slf: ['Every egg mass scraped today avoids a cost tomorrow. Economists call this prevention. Field staff call it Tuesday.'],
+  jb: ['The beetle’s demand for western travel is highly elastic with respect to night-only loading.'],
+  swine: [
+    'Feral swine: a textbook negative externality. They root; we pay.',
+    'Marginal damage per hog remains stubbornly positive. So does the hog.',
+  ],
+  queen: ['Her Majesty’s willingness to pay for expedited review is infinite; her ability to pay is zero. A classic royal budget constraint.'],
+  acp: ['The psyllid is very small. Its effect on the citrus market is not. PPD calls this a nonlinear response.'],
+  nws: ['Sterile flies: the rare federal program whose output is, by design, zero offspring and a very favorable counterfactual.'],
+  parrot: ['Polly’s willingness to accept a cracker in lieu of compliance has been estimated at one (1) cracker, with a wide confidence interval.'],
+  horse: ['The stallion’s opportunity cost of quarantine is, in his own estimation, enormous.'],
+  cattle: ['The cow’s demand for interstate travel is perfectly inelastic. The pre-movement test is a binding constraint.'],
+  alpaca: ['Alpaca fiber prices were included in the baseline. The spitting was recorded as an unquantified cost.'],
+  starling: ['Four thousand starlings, one feedlot, zero willingness to pay for the feed. A free-rider problem with wings.'],
+  raccoon: ['The bait costs money. The rabies would cost more. The raccoon only cares that the bait is fish-flavored.'],
+  medfly: ['Preventive release: pay a little every week so you never have to pay a lot all at once. Economists find this romantic. The flies do not.'],
+  petunia: ['The orange petunia had no measurable risk and a measurable recall cost. PPD has filed this under “compliance is not free.”'],
+  orchid: ['The orchid’s price is high, its supply is limited and its paperwork is perfectly inelastic.'],
+  citrus: ['The citrus tree has asked about its present value. The agency has declined to discuss it in front of the tree.'],
+  borer: ['Heat treatment costs money. Not heat-treating costs forests. The benefit-cost analysis was unusually brief.'],
+  bumblebee: ['The bumblebee provides pollination services, a positive externality it has never once invoiced.'],
+  beagle: [
+    'The beagle’s marginal product of sniffing remains positive at every observed level of sausage.',
+    'PPD declined to estimate the Value of a Statistical Beagle, citing the obvious answer: priceless.',
+  ],
+  papaya: ['The papaya’s consumer surplus was high, right up until the treatment requirement.'],
+  khapra: ['The khapra beetle’s expected damages times its probability of entry equals an excellent reason to check the rice.'],
+  goldfish: ['Regulation the goldfish applies a discount rate of 100 percent per three seconds. The office finds this efficient.'],
+  'discount-rate': [
+    'The discount rate was asked to choose between 3 and 7 percent. It chose 2, then 3 and 7, then asked for guidance.',
+    'A dollar today is worth more than a dollar tomorrow. The discount rate is worth more than an hour of argument, but only just.',
+  ],
+  baseline: [
+    'The baseline has been defined as “a world in which none of this happened.” Stakeholders called it unrealistic but beautiful.',
+    'The counterfactual baseline keeps moving. PPD has asked it to hold still for the regression.',
+  ],
+  'proposed-rule': ['The proposed rule has been scored. Benefits: quantified. Costs: quantified. Preamble: still loading.'],
+  'small-entity': ['The small entity has been found significantly impacted, substantially numerous and, honestly, a little overwhelmed.'],
+  asparagus: ['Demand for U.S. No. 1 asparagus is elastic. The spear, sadly, is not.'],
+  egg: ['The grade shield confers a price premium. The egg wishes to be known as an individual, not a commodity.'],
+};
+
+const ECON_BY_PROBLEM: string[] = [
+  'The benefit-cost ratio came out to exactly 1.00. The agency is officially indifferent and would like to go home.',
+  'Some benefits could not be quantified. They have been listed in a table titled “Vibes.”',
+  'The baseline moved, the counterfactual moved, and the analyst moved to a new cubicle. The model has not converged.',
+  'Two economists reviewed {s} and produced three opinions and a footnote.',
+  '{S} imposes an unpriced externality. The agency proposes to internalize it, ideally not literally.',
+];
+
+const ECON_BY_OBJECTIVE: string[] = [
+  'Benefits exceed costs at 3 percent. At 7 percent, benefits exceed patience.',
+  'Sensitivity analysis complete. The results are very sensitive. So is the analyst.',
+  'Ten thousand Monte Carlo draws. In 9,999 of them, {s} remained a problem. The remaining draw is under review.',
+  'Willingness to pay to make {s} go away has been estimated. Willingness to fill out the survey has not.',
+  'All figures have been converted to 2026 dollars, annualized and discounted. The snail has been annualized too.',
+  'The deadweight loss from {P} has been estimated, triple-checked and rounded to the nearest snail.',
+];
+
+const ECON_GENERIC: string[] = [
+  'Ceteris paribus, {s} will remain a problem. Unfortunately, ceteris is never paribus.',
+  'Assuming rational actors, {s} would comply. The model’s assumptions are under review.',
+  'The opportunity cost of this assignment is every other assignment. PPD has approved it anyway.',
+  'The economist’s answer to whether we should {O}: it depends. The economist’s answer to what it depends on: also it depends.',
+  'There is no such thing as a free lunch. There is, however, a pending federal definition of lunch.',
+  'On the margin, one more meeting about {s} yields negative returns. The meeting has been scheduled anyway.',
+  'This action is not economically significant. It is, however, emotionally significant.',
+  'Benefits: {s} stays put. Costs: 47 pages. Net benefits: positive, if you don’t monetize the reviewers’ sanity.',
+  'The Regulatory Flexibility Act requires consideration of small entities. {S} has asked whether it counts.',
+  'In the long run, we are all dead. In the short run, we still need to {O}.',
+];
+
 /** Optional closers that add administrative jargon to a finding. */
 export const JARGON_CLOSERS: string[] = [
   'This finding is non-binding, non-precedential and extremely sincere.',
@@ -456,6 +566,9 @@ export const JARGON_CLOSERS: string[] = [
   'Effective immediately, or at the start of the next fiscal year, whichever is later.',
   'Reviewed for clarity, concision and vibes.',
   'Supervisory concurrence is anticipated.',
+  'All figures in undiscounted, unaudited, unbelievable dollars.',
+  'Results robust to every assumption except the ones we made.',
+  'Confidence interval: wide.',
 ];
 
 // ---------------------------------------------------------------------------
@@ -482,6 +595,12 @@ function build(): PunEntry[] {
     lines.forEach((text, i) => out.push({ id: `oc:${category}:${i}`, text, objectiveCategory: category as PunEntry['objectiveCategory'] }));
   }
   GENERIC.forEach((text, i) => out.push({ id: `g:${i}`, text }));
+  for (const [subjectId, lines] of Object.entries(ECON_BY_SUBJECT)) {
+    lines.forEach((text, i) => out.push({ id: `e:s:${subjectId}:${i}`, text, subjectId, flavor: 'econ' }));
+  }
+  ECON_BY_PROBLEM.forEach((text, i) => out.push({ id: `e:pc:${i}`, text, problemCategory: 'economics', flavor: 'econ' }));
+  ECON_BY_OBJECTIVE.forEach((text, i) => out.push({ id: `e:oc:${i}`, text, objectiveCategory: 'economics', flavor: 'econ' }));
+  ECON_GENERIC.forEach((text, i) => out.push({ id: `e:g:${i}`, text, flavor: 'econ' }));
   return out;
 }
 

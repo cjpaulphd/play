@@ -3,7 +3,7 @@
  * Content lives in src/data; logic lives in src/lib. Keep them apart.
  */
 
-export type GameMode = 'real' | 'chaos' | 'extended';
+export type GameMode = 'real' | 'ppd' | 'chaos' | 'extended';
 
 /** Every illustration the reels and case file can draw. See src/illustrations. */
 export type IconId =
@@ -17,7 +17,8 @@ export type IconId =
   | 'dictionary' | 'gavel' | 'clipboard' | 'phone' | 'stamp' | 'ship' | 'eggmass'
   | 'snack' | 'passport' | 'meeting' | 'binder' | 'committee' | 'calendar' | 'chart'
   | 'shield' | 'permit' | 'microscope' | 'fence' | 'megaphone' | 'stopwatch' | 'luggage'
-  | 'vaccine' | 'sterile' | 'scale' | 'ruler' | 'question' | 'goldfish';
+  | 'vaccine' | 'sterile' | 'scale' | 'ruler' | 'question' | 'goldfish'
+  | 'calculator' | 'curve' | 'storefront';
 
 export type SubjectCategory =
   | 'insect' | 'mollusk' | 'reptile' | 'bird' | 'mammal' | 'livestock'
@@ -31,7 +32,8 @@ export type ProblemCategory =
   | 'jurisdiction'   // who is in charge here, exactly
   | 'semantics'      // definitional crises
   | 'behavior'       // the subject is being difficult
-  | 'standards';     // grades, sizes, appearance
+  | 'standards'      // grades, sizes, appearance
+  | 'economics';     // benefit-cost analysis and its discontents
 
 export type ObjectiveCategory =
   | 'assessment'
@@ -41,7 +43,8 @@ export type ObjectiveCategory =
   | 'paperwork'
   | 'committee'
   | 'compliance'
-  | 'outreach';
+  | 'outreach'
+  | 'economics';
 
 /** How grounded a reel entry is. Absurd entries never appear in Surprisingly Real mode. */
 export type Realism = 'real' | 'absurd';
@@ -110,6 +113,8 @@ export interface CuratedCase {
   /** An especially obscure-but-true regulatory detail, for "Did you really just regulate that?" */
   obscureDetail?: string;
   sourceIds: string[];
+  /** A real, sourced economic figure or requirement — the PPD footnote. */
+  econNote?: { text: string; sourceIds: string[] };
 }
 
 export interface TriviaItem {
@@ -132,9 +137,11 @@ export interface PunEntry {
   objectiveCategory?: ObjectiveCategory;
   /** Restrict to a mode family. Omitted = any. */
   modes?: GameMode[];
+  /** Economics-flavored lines get a boost in PPD Economic Analysis mode. */
+  flavor?: 'econ';
 }
 
-export type RareEvent = 'jackpot' | 'alignment' | null;
+export type RareEvent = 'jackpot' | 'alignment' | 'pareto' | null;
 
 /** A fully rolled assignment, ready for the case file. */
 export interface Assignment {

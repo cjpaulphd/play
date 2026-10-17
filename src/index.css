@@ -203,6 +203,19 @@
   .tag-hypo {
     @apply border-stamp-600 bg-stamp-500/10 text-stamp-700;
   }
+  .tag-ppd {
+    @apply border-navy-800 bg-navy-800 text-ivory-50;
+  }
+  .rate-chip {
+    @apply flex cursor-pointer flex-col items-start rounded border-2 border-navy-800/40 bg-ivory-50 px-2.5 py-1 font-type text-[12.5px] leading-tight text-navy-950 transition hover:border-navy-800;
+  }
+  .rate-chip--on {
+    @apply border-navy-800 bg-navy-800 text-ivory-50;
+  }
+  .rate-chip:focus-within {
+    outline: 3px solid #b8954a;
+    outline-offset: 2px;
+  }
   .tag-rare {
     @apply border-brass-600 bg-brass-300 text-navy-950;
   }

@@ -45,6 +45,18 @@ export const SOURCES: SourceRecord[] = [
   { id: 'khapra-card', title: 'Khapra Beetle Pest Card', publisher: 'USDA APHIS', url: 'https://www.aphis.usda.gov/sites/default/files/HP-PestCards-KB.pdf' },
   { id: 'hpai-dairy', title: 'USDA Actions to Protect Livestock Health From Highly Pathogenic H5N1 Avian Influenza', publisher: 'USDA', url: 'https://www.usda.gov/about-usda/news/press-releases/2024/04/24/usda-actions-protect-livestock-health-highly-pathogenic-h5n1-avian-influenza' },
   { id: 'hpai-dairy-update', title: 'APHIS Updates Guidance on the Interstate Movement of Lactating Dairy Cattle', publisher: 'USDA APHIS', url: 'https://www.aphis.usda.gov/news/program-update/aphis-updates-guidance-interstate-movement-lactating-dairy-cattle' },
+  // Regulatory economics (PPD)
+  { id: 'aphis-org', title: 'APHIS Organization (Policy and Program Development)', publisher: 'USDA APHIS', url: 'https://www.aphis.usda.gov/organization' },
+  { id: 'aphis-rulemaking', title: 'Rulemaking at APHIS', publisher: 'USDA APHIS', url: 'https://www.aphis.usda.gov/rulemaking' },
+  { id: 'eo-12866', title: 'Executive Order 12866 — Regulatory Planning and Review', publisher: 'National Archives', url: 'https://www.archives.gov/files/federal-register/executive-orders/pdf/12866.pdf' },
+  { id: 'eo-14148', title: 'Executive Order 14148 — Initial Rescissions of Harmful Executive Orders and Actions', publisher: 'Federal Register', url: 'https://www.federalregister.gov/documents/2025/01/28/2025-01901/initial-rescissions-of-harmful-executive-orders-and-actions' },
+  { id: 'a4-2003', title: 'OMB Circular A-4 (2003)', publisher: 'Office of Management and Budget (archived)', url: 'https://obamawhitehouse.archives.gov/omb/circulars_a004_a-4/' },
+  { id: 'a4-2023', title: 'OMB Circular A-4 (2023 revision), Federal Register notice', publisher: 'Office of Management and Budget', url: 'https://public-inspection.federalregister.gov/2023-24819.pdf' },
+  { id: 'a4-2025', title: 'The Legal Dynamics of Rescinding the Circular A-4 Update', publisher: 'Institute for Policy Integrity', url: 'https://policyintegrity.org/publications/detail/the-legal-dynamics-of-rescinding-the-circular-a-4-update' },
+  { id: 'rfa', title: 'Regulatory Flexibility Act', publisher: 'SBA Office of Advocacy', url: 'https://advocacy.sba.gov/resources/regulatory-flexibility-act/' },
+  { id: 'rfa-faq', title: 'Regulatory Flexibility Act Frequently Asked Questions', publisher: 'SBA Office of Advocacy', url: 'https://advocacy.sba.gov/resources/regulatory-flexibility-act/regulatory-flexibility-act-frequently-asked-questions/' },
+  { id: 'swine-nwrc', title: 'NWRC Research Areas: Feral Swine and Ungulate Research', publisher: 'USDA APHIS National Wildlife Research Center', url: 'https://www.aphis.usda.gov/national-wildlife-programs/nwrc/research-areas/feral-swine' },
+  { id: 'jb-ars', title: 'Geraniums Could Help Control Devastating Japanese Beetle', publisher: 'USDA Agricultural Research Service', url: 'https://www.ars.usda.gov/news-events/news/research-news/2010/geraniums-could-help-control-devastating-japanese-beetle/' },
   // Extended universe (not APHIS)
   { id: 'ams-asparagus', title: 'Asparagus Grades and Standards', publisher: 'USDA Agricultural Marketing Service', url: 'https://www.ams.usda.gov/grades-standards/asparagus-grades-and-standards' },
   { id: 'ams-asparagus-proc', title: 'Asparagus for Processing Grades and Standards', publisher: 'USDA Agricultural Marketing Service', url: 'https://www.ams.usda.gov/grades-standards/asparagus-processing-grades-and-standards' },

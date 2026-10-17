@@ -10,6 +10,9 @@ import { fictionalFormNumber } from './punEngine';
 const REAL_CASES = CURATED_CASES.filter((c) => c.mode === 'real');
 const EXTENDED_CASES = CURATED_CASES.filter((c) => c.mode === 'extended');
 const CHAOS_SUBJECTS = SUBJECTS.filter((s) => s.modes.includes('chaos'));
+const PPD_SUBJECTS = SUBJECTS.filter((s) => s.modes.includes('chaos') || s.modes.includes('ppd'));
+const ECON_PROBLEMS = PROBLEMS.filter((p) => p.category === 'economics' && p.realism === 'absurd');
+const ECON_OBJECTIVES = OBJECTIVES.filter((o) => o.category === 'economics' && o.realism === 'absurd');
 const ABSURD_PROBLEMS = PROBLEMS.filter((p) => p.realism === 'absurd');
 const REALISH_PROBLEMS = PROBLEMS.filter((p) => p.realism === 'real');
 const ABSURD_OBJECTIVES = OBJECTIVES.filter((o) => o.realism === 'absurd');
@@ -22,6 +25,9 @@ const bags = {
   chaosSubject: new ShuffleBag(CHAOS_SUBJECTS),
   absurdProblem: new ShuffleBag(ABSURD_PROBLEMS),
   absurdObjective: new ShuffleBag(ABSURD_OBJECTIVES),
+  ppdSubject: new ShuffleBag(PPD_SUBJECTS),
+  econProblem: new ShuffleBag(ECON_PROBLEMS),
+  econObjective: new ShuffleBag(ECON_OBJECTIVES),
 };
 
 const FINDING_OPENERS = [
@@ -35,7 +41,7 @@ const FINDING_OPENERS = [
 ];
 
 /** Rare-event odds per spin. Kept low so they stay delightful. */
-export const RARE_ODDS = { jackpot: 1 / 28, alignment: 1 / 24, reorg: 1 / 12 };
+export const RARE_ODDS = { jackpot: 1 / 28, alignment: 1 / 24, pareto: 1 / 24, reorg: 1 / 12 };
 
 export function forcedEvent(): string | null {
   try {
@@ -47,8 +53,9 @@ export function forcedEvent(): string | null {
 
 function rollRareEvent(mode: GameMode): RareEvent {
   const forced = forcedEvent();
-  if (forced === 'jackpot' || forced === 'alignment') return forced;
+  if (forced === 'jackpot' || forced === 'alignment' || forced === 'pareto') return forced;
   if (mode === 'real') return chance(RARE_ODDS.alignment) ? 'alignment' : null;
+  if (mode === 'ppd') return chance(RARE_ODDS.pareto) ? 'pareto' : null;
   return chance(RARE_ODDS.jackpot) ? 'jackpot' : null;
 }
 
@@ -56,7 +63,7 @@ function caseNumber(mode: GameMode, curated?: CuratedCase): string {
   const year = new Date().getFullYear();
   const serial = String(1 + randomInt(9999)).padStart(4, '0');
   const agency = curated?.agency ?? 'APHIS';
-  const suffix = mode === 'chaos' ? '-HX' : '';
+  const suffix = mode === 'chaos' ? '-HX' : mode === 'ppd' ? '-BCA' : '';
   return `${agency}-${year}-${serial}${suffix}`;
 }
 
@@ -66,10 +73,11 @@ function burdenMinutes(mode: GameMode, objective: Objective, rare: RareEvent): n
     paperwork: [180, 720],
     assessment: [120, 480],
     coordination: [150, 540],
+    economics: [300, 1200],
   };
   const [lo, hi] = ranges[objective.category] ?? [45, 300];
   let minutes = lo + randomInt(hi - lo + 1);
-  if (mode === 'chaos') minutes = Math.round(minutes * 1.6);
+  if (mode === 'chaos' || mode === 'ppd') minutes = Math.round(minutes * 1.6);
   if (rare) minutes = minutes * 7 + 47;
   return minutes;
 }
@@ -111,10 +119,17 @@ function fromCase(mode: GameMode, c: CuratedCase): Assignment {
  * Roll a new assignment.
  * - real / extended: select one complete curated case (never recombined).
  * - chaos: select each reel independently, weighted toward the absurd.
+ * - ppd: like chaos, but the problem and objective lean hard on applied economics.
  */
 export function rollAssignment(mode: GameMode): Assignment {
   if (mode === 'real') return fromCase(mode, bags.real.next());
   if (mode === 'extended') return fromCase(mode, bags.extended.next());
+  if (mode === 'ppd') {
+    const subject = bags.ppdSubject.next();
+    const problem = chance(0.6) ? bags.econProblem.next() : chance(0.6) ? bags.absurdProblem.next() : pick(REALISH_PROBLEMS);
+    const objective = chance(0.8) ? bags.econObjective.next() : bags.absurdObjective.next();
+    return assemble(mode, subject, problem, objective);
+  }
   const subject = bags.chaosSubject.next();
   const problem = chance(0.72) ? bags.absurdProblem.next() : pick(REALISH_PROBLEMS);
   const objective = chance(0.68) ? bags.absurdObjective.next() : pick(REALISH_OBJECTIVES);
@@ -127,8 +142,9 @@ export function fillerFor(reel: 0 | 1 | 2, mode: GameMode): Subject | Problem | 
     const pool = mode === 'extended' ? SUBJECTS : SUBJECTS.filter((s) => !s.modes.every((m) => m === 'extended'));
     return pick(pool);
   }
-  if (reel === 1) return pick(mode === 'chaos' ? PROBLEMS : REALISH_PROBLEMS);
-  return pick(mode === 'chaos' ? OBJECTIVES : REALISH_OBJECTIVES);
+  const open = mode === 'chaos' || mode === 'ppd';
+  if (reel === 1) return pick(mode === 'ppd' && chance(0.5) ? ECON_PROBLEMS : open ? PROBLEMS : REALISH_PROBLEMS);
+  return pick(mode === 'ppd' && chance(0.5) ? ECON_OBJECTIVES : open ? OBJECTIVES : REALISH_OBJECTIVES);
 }
 
 export function toStored(a: Assignment, pun: PunResult): StoredAssignment {

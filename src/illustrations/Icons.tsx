@@ -605,6 +605,37 @@ const ICONS: Record<IconId, ReactElement> = {
       </g>
     </g>
   ),
+  calculator: (
+    <g {...s}>
+      <rect x="14" y="6" width="36" height="52" rx="4" fill={'#3b4a5a'} />
+      <rect x="19" y="11" width="26" height="11" rx="1.5" fill={'#c9e8c0'} />
+      <text x="43" y="20" textAnchor="end" fontFamily="Courier Prime, monospace" fontSize="8" fill={INK} stroke="none" fontWeight="700">1.00</text>
+      {[0, 1, 2, 3].map((r) => [0, 1, 2].map((c) => (
+        <rect key={`${r}${c}`} x={19 + c * 9.5} y={27 + r * 7.5} width="7" height="5.5" rx="1" fill={r === 3 && c === 2 ? RED : IVORY} strokeWidth={1.2} />
+      )))}
+    </g>
+  ),
+  curve: (
+    <g {...s}>
+      <rect x="6" y="6" width="52" height="52" rx="2" fill={IVORY} />
+      <path d="M12 52V12M12 52h40" />
+      <path d="M16 18c8 14 18 24 32 30" fill="none" stroke={NAVY} strokeWidth={3} />
+      <path d="M16 46c10-4 20-14 30-30" fill="none" stroke={RED} strokeWidth={3} />
+      <circle cx="31" cy="34" r="3" fill={BRASS} />
+      <path d="M31 34v18M12 34h19" stroke={GREY} strokeDasharray="2 2" strokeWidth={1.4} />
+    </g>
+  ),
+  storefront: (
+    <g {...s}>
+      <rect x="10" y="26" width="44" height="30" fill={IVORY} />
+      <path d="M6 26l6-14h40l6 14z" fill={RED} />
+      <path d="M14 12l-2 14m12-14l-1 14m10-14v14m9-14l1 14m10-14l2 14" stroke={IVORY} strokeWidth={2} />
+      <rect x="16" y="34" width="14" height="22" fill={TAN} />
+      <rect x="36" y="34" width="12" height="10" fill={SKY} />
+      <circle cx="27" cy="46" r="1.2" fill={INK} stroke="none" />
+      <text x="42" y="52" textAnchor="middle" fontFamily="Oswald, sans-serif" fontSize="6" fill={NAVY} stroke="none" fontWeight="700">SMALL</text>
+    </g>
+  ),
   question: (
     <g {...s}>
       <circle cx="32" cy="32" r="24" fill={BRASS} />

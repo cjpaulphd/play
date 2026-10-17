@@ -30,6 +30,9 @@ export const OBJECTIVES: Objective[] = [
   { id: 'o-khapra', text: 'Stop a notorious stored-product pest at the port of entry', icon: 'shield', category: 'containment', realism: 'real', tags: ['port'] },
   { id: 'o-dairy-test', text: 'Require pre-movement testing', icon: 'microscope', category: 'compliance', realism: 'real', tags: ['testing'] },
   { id: 'o-bumble', text: 'Apply import rules for bees other than honey bees', icon: 'permit', category: 'permitting', realism: 'real', tags: ['import'] },
+  // ---------- Real: regulatory economics (PPD) ----------
+  { id: 'o-ria', text: 'Prepare a regulatory impact analysis under E.O. 12866', icon: 'chart', category: 'economics', realism: 'real', tags: ['econ', 'eo12866'] },
+  { id: 'o-irfa', text: 'Prepare an initial regulatory flexibility analysis', icon: 'calculator', category: 'economics', realism: 'real', tags: ['econ', 'rfa'] },
   // ---------- Real: USDA Extended Universe ----------
   { id: 'o-asp-grade', text: 'Determine eligibility for U.S. No. 1', icon: 'scale', category: 'assessment', realism: 'real', tags: ['grade'] },
   { id: 'o-egg-grade', text: 'Grade it under the supervision of a USDA grader', icon: 'shield', category: 'assessment', realism: 'real', tags: ['grade'] },
@@ -71,6 +74,20 @@ export const OBJECTIVES: Objective[] = [
   { id: 'o-fax', text: 'Fax it to the regional office for situational awareness', icon: 'phone', category: 'coordination', realism: 'absurd', tags: ['offices'] },
   { id: 'o-benchmark', text: 'Benchmark against peer nations and peer snails', icon: 'chart', category: 'assessment', realism: 'absurd', tags: ['study'] },
   { id: 'o-mediation', text: 'Refer the matter to mandatory mediation', icon: 'gavel', category: 'coordination', realism: 'absurd', tags: ['jurisdiction'] },
+  // ---------- Absurd: applied economics ----------
+  { id: 'o-bca', text: 'Conduct a quantitative benefit-cost analysis', icon: 'scale', category: 'economics', realism: 'absurd', tags: ['econ'] },
+  { id: 'o-sensitivity', text: 'Run a sensitivity analysis until it stops being sensitive', icon: 'chart', category: 'economics', realism: 'absurd', tags: ['econ'] },
+  { id: 'o-wtp', text: 'Estimate willingness to pay to make the problem go away', icon: 'calculator', category: 'economics', realism: 'absurd', tags: ['econ'] },
+  { id: 'o-monetize', text: 'Monetize the unquantifiable', icon: 'calculator', category: 'economics', realism: 'absurd', tags: ['econ'] },
+  { id: 'o-discount', text: 'Discount the future at 3% and 7%, then argue about 2%', icon: 'curve', category: 'economics', realism: 'absurd', tags: ['econ', 'time'] },
+  { id: 'o-baseline', text: 'Establish a credible baseline', icon: 'chart', category: 'economics', realism: 'absurd', tags: ['econ'] },
+  { id: 'o-monte-carlo', text: 'Run 10,000 Monte Carlo simulations', icon: 'calculator', category: 'economics', realism: 'absurd', tags: ['econ'] },
+  { id: 'o-dwl', text: 'Calculate the deadweight loss', icon: 'curve', category: 'economics', realism: 'absurd', tags: ['econ'] },
+  { id: 'o-2026-dollars', text: 'Convert all figures to 2026 dollars', icon: 'calculator', category: 'economics', realism: 'absurd', tags: ['econ'] },
+  { id: 'o-annualize', text: 'Annualize everything, including the snail', icon: 'calendar', category: 'economics', realism: 'absurd', tags: ['econ', 'time'] },
+  { id: 'o-footnote', text: 'Add a footnote acknowledging uncertainty', icon: 'documents', category: 'economics', realism: 'absurd', tags: ['econ', 'memo'] },
+  { id: 'o-vsb', text: 'Estimate the Value of a Statistical Beagle', icon: 'beagle', category: 'economics', realism: 'absurd', tags: ['econ'] },
+  { id: 'o-internalize', text: 'Internalize the externality, ideally not literally', icon: 'scale', category: 'economics', realism: 'absurd', tags: ['econ'] },
 ];
 
 export const OBJECTIVE_BY_ID: Record<string, Objective> = Object.fromEntries(OBJECTIVES.map((o) => [o.id, o]));

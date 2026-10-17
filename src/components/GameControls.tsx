@@ -1,3 +1,4 @@
+import { formatMoney } from '../lib/econ';
 import type { GameMode } from '../types';
 
 interface GameControlsProps {
@@ -9,18 +10,20 @@ interface GameControlsProps {
   disabled: boolean;
   issued: number;
   staffHours: number;
+  netBenefits: number;
 }
 
 const MODES: { id: GameMode; label: string; sub: string }[] = [
   { id: 'real', label: 'Surprisingly Real', sub: 'Curated, sourced, actual' },
+  { id: 'ppd', label: 'PPD Economic Analysis', sub: 'Benefit-cost analysis of the absurd' },
   { id: 'chaos', label: 'Maximum Bureaucracy', sub: 'Hypothetical. Gloriously so.' },
   { id: 'extended', label: 'USDA Extended Universe', sub: 'Other agencies. Still real.' },
 ];
 
-export function GameControls({ mode, onMode, extendedUnlocked, soundOn, onSound, disabled, issued, staffHours }: GameControlsProps) {
+export function GameControls({ mode, onMode, extendedUnlocked, soundOn, onSound, disabled, issued, staffHours, netBenefits }: GameControlsProps) {
   return (
     <div className="mx-auto flex w-full max-w-5xl flex-col gap-3">
-      <div role="radiogroup" aria-label="Game mode" className="grid grid-cols-1 gap-2 sm:grid-cols-3">
+      <div role="radiogroup" aria-label="Game mode" className="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-4">
         {MODES.map((m) => {
           const locked = m.id === 'extended' && !extendedUnlocked;
           const active = mode === m.id;
@@ -51,6 +54,9 @@ export function GameControls({ mode, onMode, extendedUnlocked, soundOn, onSound,
           </span>
           <span>
             Staff Hours Theoretically Expended: <strong className="text-brass-300">{staffHours.toLocaleString('en-US', { maximumFractionDigits: 1 })}</strong>
+          </span>
+          <span>
+            Fictional Net Benefits Identified (7%): <strong className="text-brass-300">{formatMoney(netBenefits)}</strong>
           </span>
         </div>
         <button type="button" onClick={onSound} aria-pressed={soundOn} className="btn-ghost">

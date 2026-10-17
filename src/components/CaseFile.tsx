@@ -4,6 +4,7 @@ import { SOURCE_BY_ID } from '../data/sources';
 import { Icon } from '../illustrations/Icons';
 import { formatBurden } from '../lib/assignment';
 import type { Assignment, PunResult } from '../types';
+import { EconAddendum } from './EconAddendum';
 
 interface CaseFileProps {
   assignment: Assignment;
@@ -50,7 +51,8 @@ export function CaseFile({ assignment: a, pun, reducedMotion, onStamp, onCopy, o
 
   const real = a.mode === 'real';
   const extended = a.mode === 'extended';
-  const sources = a.curated?.sourceIds.map((id) => SOURCE_BY_ID[id]).filter(Boolean) ?? [];
+  const sourceIds = [...new Set([...(a.curated?.sourceIds ?? []), ...(a.curated?.econNote?.sourceIds ?? [])])];
+  const sources = sourceIds.map((id) => SOURCE_BY_ID[id]).filter(Boolean);
   const issued = new Date(a.issuedAt);
 
   return (
@@ -87,8 +89,9 @@ export function CaseFile({ assignment: a, pun, reducedMotion, onStamp, onCopy, o
           <div className="flex shrink-0 flex-wrap gap-2 sm:flex-col sm:items-end">
             {real && <span className="tag tag-real">Surprisingly Real</span>}
             {extended && <span className="tag tag-ext">USDA Extended Universe</span>}
-            {a.mode === 'chaos' && <span className="tag tag-hypo">Hypothetical Assignment — Not Actual Federal Policy</span>}
-            {a.rareEvent && <span className="tag tag-rare">{a.rareEvent === 'jackpot' ? 'Interagency Jackpot' : 'Regulatory Alignment'}</span>}
+            {a.mode === 'ppd' && <span className="tag tag-ppd">PPD Economic Analysis</span>}
+            {(a.mode === 'chaos' || a.mode === 'ppd') && <span className="tag tag-hypo">Hypothetical Assignment — Not Actual Federal Policy</span>}
+            {a.rareEvent && <span className="tag tag-rare">{a.rareEvent === 'jackpot' ? 'Interagency Jackpot' : a.rareEvent === 'pareto' ? 'Pareto Improvement' : 'Regulatory Alignment'}</span>}
           </div>
         </header>
 
@@ -162,6 +165,12 @@ export function CaseFile({ assignment: a, pun, reducedMotion, onStamp, onCopy, o
                   <p className="mt-0.5 font-body text-[14.5px] text-navy-950">{a.curated.obscureDetail}</p>
                 </div>
               )}
+              {a.curated.econNote && (
+                <div className="mt-3 rounded border-l-4 border-navy-700 bg-navy-700/[0.07] px-3 py-2">
+                  <p className="font-plaque text-[11px] font-bold uppercase tracking-[0.16em] text-navy-800">PPD Economic Footnote</p>
+                  <p className="mt-0.5 font-body text-[14.5px] text-navy-950">{a.curated.econNote.text}</p>
+                </div>
+              )}
               {sources.length > 0 && (
                 <ul className="mt-3 space-y-1">
                   {sources.map((s) => (
@@ -178,6 +187,8 @@ export function CaseFile({ assignment: a, pun, reducedMotion, onStamp, onCopy, o
             </div>
           </details>
         )}
+
+        <EconAddendum assignment={a} />
 
         {/* Routing slip */}
         <div className="mt-5 flex flex-wrap items-center gap-x-4 gap-y-1 font-type text-[12px] text-navy-800/80">

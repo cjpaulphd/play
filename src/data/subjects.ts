@@ -232,6 +232,43 @@ export const SUBJECTS: Subject[] = [
       'is swimming in circles, which the committee recognizes as a best practice',
     ],
   },
+  // ---------- Regulatory economics (PPD) ----------
+  {
+    id: 'proposed-rule', name: 'Proposed Rule', short: 'the proposed rule', icon: 'documents', category: 'material',
+    modes: ['real', 'chaos', 'ppd'], tags: ['rulemaking', 'econ', 'federal-register'],
+    traits: [
+      'has a preamble longer than most novels and a better plot twist in Section IV',
+      'is open for public comment, and the public has comments',
+      'has been read in its entirety by exactly one economist, who would like a nap',
+    ],
+  },
+  {
+    id: 'small-entity', name: 'Representative Small Entity', short: 'the small entity', icon: 'storefront', category: 'icon',
+    modes: ['real', 'chaos', 'ppd'], tags: ['rfa', 'econ', 'small-business'],
+    traits: [
+      'is small, entity-like and highly representative, which is all anyone can ask',
+      'would like to know whether a snail counts as a small business',
+      'has asked to be weighed, measured and size-standardized in private',
+    ],
+  },
+  {
+    id: 'discount-rate', name: 'The Social Discount Rate', short: 'the discount rate', icon: 'curve', category: 'icon',
+    modes: ['chaos', 'ppd'], tags: ['econ', 'a-4', 'time'],
+    traits: [
+      'has been 3 and 7 percent, then 2 percent, then possibly 3 and 7 percent again, and would like some stability',
+      'values the future less than the present, which is honestly relatable',
+      'declined to state its preferred value pending further guidance',
+    ],
+  },
+  {
+    id: 'baseline', name: 'The Counterfactual Baseline', short: 'the baseline', icon: 'chart', category: 'icon',
+    modes: ['chaos', 'ppd'], tags: ['econ', 'counterfactual'],
+    traits: [
+      'describes a world that never happened, in tremendous detail',
+      'keeps moving every time someone looks at it',
+      'insists that, absent the rule, everything would have been fine',
+    ],
+  },
   // ---------- USDA Extended Universe (not APHIS responsibilities) ----------
   {
     id: 'asparagus', name: 'Asparagus Spear', short: 'the spear', icon: 'asparagus', category: 'produce',

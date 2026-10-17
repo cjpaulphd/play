@@ -1,6 +1,6 @@
 import { JARGON_CLOSERS, PUNS } from '../data/puns';
 import { OFFICES } from '../data/bureaucracy';
-import type { Objective, Problem, PunEntry, PunResult, Subject } from '../types';
+import type { GameMode, Objective, Problem, PunEntry, PunResult, Subject } from '../types';
 import { chance, pick, random, randomInt } from './random';
 
 /**
@@ -70,15 +70,22 @@ export interface PunEngineOptions {
   /** Probability of appending an administrative jargon closer. */
   jargonRate?: number;
   pool?: readonly PunEntry[];
+  /** In PPD Economic Analysis mode, economics-flavored lines are preferred. */
+  mode?: GameMode;
 }
+
+/** How much an 'econ' line is boosted in PPD mode: enough to beat a generic subject line, never a bespoke one. */
+const PPD_ECON_BOOST = 35;
 
 export function generatePun(ctx: PunContext, opts: PunEngineOptions = {}): PunResult {
   const pool = opts.pool ?? PUNS;
   const exclude = new Set(opts.exclude ?? []);
   const recent = new Set(opts.recent ?? []);
 
+  const boost = (p: PunEntry, t: Tier | null): Tier | null =>
+    t && opts.mode === 'ppd' && p.flavor === 'econ' && t.score < 100 ? { ...t, score: t.score + PPD_ECON_BOOST } : t;
   const scored = pool
-    .map((p) => ({ p, tier: tierOf(p, ctx) }))
+    .map((p) => ({ p, tier: boost(p, tierOf(p, ctx)) }))
     .filter((x): x is { p: PunEntry; tier: Tier } => x.tier !== null && !exclude.has(x.p.id));
 
   // Prefer fresh lines; fall back to recently used ones; finally allow anything for this context.

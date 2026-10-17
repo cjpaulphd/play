@@ -31,6 +31,9 @@ export const PROBLEMS: Problem[] = [
   { id: 'p-khapra-bag', text: 'Concealment in a passenger’s bag of rice', icon: 'luggage', category: 'movement', realism: 'real', tags: ['luggage', 'stowaway'] },
   { id: 'p-dairy-h5n1', text: 'Interstate movement during an H5N1 outbreak in dairy cattle', icon: 'truck', category: 'biosecurity', realism: 'real', tags: ['interstate', 'disease'] },
   { id: 'p-bumble-import', text: 'Proposed importation as a commercial pollinator', icon: 'passport', category: 'documentation', realism: 'real', tags: ['import'] },
+  // ---------- Real: regulatory economics (PPD) ----------
+  { id: 'p-ria-threshold', text: 'An annual effect on the economy of $100 million or more', icon: 'chart', category: 'economics', realism: 'real', tags: ['econ', 'eo12866'] },
+  { id: 'p-small-impact', text: 'A significant impact on a substantial number of small entities', icon: 'storefront', category: 'economics', realism: 'real', tags: ['econ', 'rfa'] },
   // ---------- Real: USDA Extended Universe ----------
   { id: 'p-asp-diameter', text: 'Possible failure to meet the minimum stalk diameter', icon: 'ruler', category: 'standards', realism: 'real', tags: ['size'] },
   { id: 'p-egg-shield', text: 'Seeking the right to display the USDA grade shield', icon: 'shield', category: 'standards', realism: 'real', tags: ['grade'] },
@@ -76,6 +79,19 @@ export const PROBLEMS: Problem[] = [
   { id: 'p-stapler', text: 'Custody of the original stapler', icon: 'gavel', category: 'jurisdiction', realism: 'absurd', tags: ['office'] },
   { id: 'p-speed', text: 'Exceeding the posted speed limit of 0.03 mph', icon: 'stopwatch', category: 'movement', realism: 'absurd', tags: ['slow', 'speed'] },
   { id: 'p-oversized', text: 'Being significantly larger than the form allows', icon: 'ruler', category: 'standards', realism: 'absurd', tags: ['size'] },
+  // ---------- Absurd: applied economics ----------
+  { id: 'p-bcr-one', text: 'A benefit-cost ratio of exactly 1.00', icon: 'scale', category: 'economics', realism: 'absurd', tags: ['econ'] },
+  { id: 'p-unmonetizable', text: 'Benefits that refuse to be monetized', icon: 'calculator', category: 'economics', realism: 'absurd', tags: ['econ'] },
+  { id: 'p-moving-baseline', text: 'A baseline that keeps moving', icon: 'chart', category: 'economics', realism: 'absurd', tags: ['econ'] },
+  { id: 'p-discount-dispute', text: 'A dispute over the correct discount rate', icon: 'curve', category: 'economics', realism: 'absurd', tags: ['econ', 'definition'] },
+  { id: 'p-externality', text: 'An unpriced negative externality', icon: 'biohazard', category: 'economics', realism: 'absurd', tags: ['econ'] },
+  { id: 'p-inelastic', text: 'Suspiciously inelastic demand', icon: 'curve', category: 'economics', realism: 'absurd', tags: ['econ'] },
+  { id: 'p-counterfactual', text: 'A counterfactual that is, frankly, implausible', icon: 'question', category: 'economics', realism: 'absurd', tags: ['econ'] },
+  { id: 'p-year-30', text: 'Costs incurred today, benefits arriving in Year 30', icon: 'calendar', category: 'economics', realism: 'absurd', tags: ['econ', 'time'] },
+  { id: 'p-n-of-one', text: 'An econometric model with one observation', icon: 'calculator', category: 'economics', realism: 'absurd', tags: ['econ'] },
+  { id: 'p-two-economists', text: 'Two economists, three opinions', icon: 'meeting', category: 'economics', realism: 'absurd', tags: ['econ', 'meeting'] },
+  { id: 'p-vibes', text: 'A request to monetize vibes', icon: 'calculator', category: 'economics', realism: 'absurd', tags: ['econ'] },
+  { id: 'p-distribution', text: 'Distributional effects borne entirely by one regional office', icon: 'map', category: 'economics', realism: 'absurd', tags: ['econ', 'offices'] },
 ];
 
 export const PROBLEM_BY_ID: Record<string, Problem> = Object.fromEntries(PROBLEMS.map((p) => [p.id, p]));

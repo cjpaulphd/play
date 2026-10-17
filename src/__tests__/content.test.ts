@@ -161,3 +161,26 @@ describe('pun engine', () => {
     for (let i = 0; i < 30; i++) expect(recent).not.toContain(generatePun(ctx, { recent }).id);
   });
 });
+
+describe('PPD economic analysis', () => {
+  it('ppd mode is uncurated, labeled, and leans on economics', async () => {
+    let econObjectives = 0;
+    for (let i = 0; i < 200; i++) {
+      const a = rollAssignment('ppd');
+      expect(a.curated).toBeUndefined();
+      expect(a.caseNumber).toMatch(/-BCA$/);
+      if (a.objective.category === 'economics') econObjectives++;
+    }
+    expect(econObjectives).toBeGreaterThan(120);
+  });
+
+  it('prefers econ-flavored puns in ppd mode', () => {
+    const subject = SUBJECT_BY_ID.swine;
+    const ctx = { subject, problem: PROBLEMS.find((p) => p.id === 'p-snacks')!, objective: OBJECTIVES.find((o) => o.id === 'o-lanyard')! };
+    const econIds = new Set(PUNS.filter((p) => p.flavor === 'econ').map((p) => p.id));
+    const ppd = Array.from({ length: 60 }, () => generatePun(ctx, { mode: 'ppd' })).filter((r) => econIds.has(r.id)).length;
+    const chaos = Array.from({ length: 60 }, () => generatePun(ctx, { mode: 'chaos' })).filter((r) => econIds.has(r.id)).length;
+    expect(ppd).toBeGreaterThan(chaos);
+    expect(ppd).toBeGreaterThan(30);
+  });
+});
