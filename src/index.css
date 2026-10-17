@@ -1,0 +1,265 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+  --ink: #1d2b24;
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    background: #0b1f17;
+  }
+  body {
+    @apply bg-forest-950 font-body text-ivory-100 antialiased;
+    overflow-x: hidden;
+    min-height: 100vh;
+  }
+  button {
+    -webkit-tap-highlight-color: transparent;
+  }
+  :focus-visible {
+    outline: 3px solid #e6cf8f;
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  /* ---------- Office background ---------- */
+  .bg-office {
+    background:
+      radial-gradient(ellipse at 50% -10%, rgba(212, 180, 103, 0.18), transparent 55%),
+      radial-gradient(ellipse at 100% 100%, rgba(16, 29, 54, 0.85), transparent 60%),
+      repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.018) 0 2px, transparent 2px 46px),
+      linear-gradient(180deg, #123026 0%, #0b1f17 60%, #0a1324 100%);
+  }
+  .drift-paper {
+    position: absolute;
+    width: 74px;
+    height: 96px;
+    padding: 14px 10px;
+    background: #fbf6e6;
+    opacity: 0.06;
+    border-radius: 2px;
+    animation: drift 44s ease-in-out infinite;
+    transform: rotate(var(--rot, 0deg));
+  }
+  .hover-stamp {
+    position: absolute;
+    right: 3%;
+    top: 46%;
+    padding: 6px 12px;
+    border: 3px solid rgba(192, 57, 43, 0.28);
+    color: rgba(192, 57, 43, 0.28);
+    font-family: Oswald, sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    font-size: 14px;
+    transform: rotate(-14deg);
+    animation: hover 7s ease-in-out infinite;
+  }
+
+  /* ---------- Cabinet ---------- */
+  .cabinet {
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.06), transparent 30%),
+      repeating-linear-gradient(100deg, rgba(0, 0, 0, 0.05) 0 3px, transparent 3px 9px),
+      linear-gradient(160deg, #1a4033 0%, #123026 55%, #101d36 100%);
+    box-shadow:
+      inset 0 0 0 3px #6f5626,
+      inset 0 2px 0 6px rgba(230, 207, 143, 0.15),
+      0 30px 60px -20px rgba(0, 0, 0, 0.8),
+      0 8px 18px rgba(0, 0, 0, 0.4);
+  }
+  .reel-window {
+    box-shadow:
+      inset 0 10px 18px -8px rgba(0, 0, 0, 0.55),
+      inset 0 -10px 18px -8px rgba(0, 0, 0, 0.55),
+      0 0 0 3px #1d2b24,
+      0 2px 0 4px rgba(230, 207, 143, 0.25);
+  }
+  .reel-highlight {
+    animation: reelGlow 0.6s ease-in-out infinite alternate;
+  }
+  .vfd {
+    color: #7dffb1;
+    text-shadow: 0 0 6px rgba(125, 255, 177, 0.75), 0 0 14px rgba(125, 255, 177, 0.35);
+  }
+  .kbd {
+    @apply rounded border border-ivory-200/40 bg-black/30 px-1.5 py-0.5 font-type text-[11px] text-ivory-100;
+  }
+
+  .marquee-bulbs {
+    position: absolute;
+    inset: 6px 14px auto 14px;
+    height: 8px;
+    background-image: radial-gradient(circle, #fff3c4 0 2.5px, rgba(255, 243, 196, 0.15) 3.5px, transparent 4.5px);
+    background-size: 18px 8px;
+    animation: bulbs 1.2s steps(2) infinite;
+  }
+  .marquee-bulbs--fast {
+    animation-duration: 0.3s;
+  }
+  .inspection-lamp {
+    width: 16px;
+    height: 16px;
+    border-radius: 9999px;
+    background: radial-gradient(circle at 35% 30%, #fff7d6, #f2c94c 45%, #8a6a1a);
+    box-shadow: 0 0 12px 3px rgba(242, 201, 76, 0.65);
+    animation: flicker 9s infinite;
+    flex-shrink: 0;
+  }
+  .inspection-lamp--late {
+    animation-delay: -4.3s;
+  }
+
+  .issue-button {
+    color: #0a1324;
+    background: linear-gradient(180deg, #f4e2a9 0%, #d4b467 45%, #b8954a 100%);
+    border: 3px solid #6f5626;
+    box-shadow: 0 5px 0 #6f5626, 0 10px 18px rgba(0, 0, 0, 0.45), inset 0 2px 0 rgba(255, 255, 255, 0.6);
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+    transition: filter 0.15s, box-shadow 0.1s, transform 0.1s;
+  }
+  .issue-button:hover:not(:disabled) {
+    filter: brightness(1.06);
+  }
+  .issue-button:active:not(:disabled) {
+    box-shadow: 0 2px 0 #6f5626, 0 4px 10px rgba(0, 0, 0, 0.4), inset 0 2px 0 rgba(255, 255, 255, 0.6);
+  }
+  .issue-button:disabled {
+    cursor: progress;
+    filter: saturate(0.6) brightness(0.85);
+  }
+
+  /* ---------- Mode tabs & generic buttons ---------- */
+  .mode-tab {
+    @apply flex flex-col items-start gap-0.5 rounded-lg border-2 px-3 py-2 text-left transition;
+    border-color: rgba(212, 180, 103, 0.35);
+    background: rgba(10, 19, 36, 0.55);
+    color: #efe5c8;
+  }
+  .mode-tab:hover:not(:disabled) {
+    border-color: rgba(212, 180, 103, 0.8);
+  }
+  .mode-tab--active {
+    background: linear-gradient(180deg, #e6cf8f, #b8954a);
+    border-color: #6f5626;
+    color: #0a1324;
+    box-shadow: 0 3px 0 #6f5626;
+  }
+  .mode-tab--locked {
+    opacity: 0.55;
+    cursor: not-allowed;
+    border-style: dashed;
+  }
+  .mode-tab:disabled:not(.mode-tab--locked):not(.mode-tab--active) {
+    opacity: 0.7;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center gap-1.5 rounded-md border border-ivory-200/25 px-3 py-1.5 font-plaque text-[12px] uppercase tracking-[0.14em] text-ivory-100 transition hover:border-brass-300 hover:text-brass-300;
+  }
+  .btn-secondary {
+    @apply rounded-md border-2 border-brass-500 bg-transparent px-4 py-2 font-plaque text-[12.5px] font-semibold uppercase tracking-[0.16em] text-brass-300 transition hover:bg-brass-500 hover:text-navy-950 disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:bg-transparent disabled:hover:text-brass-300;
+  }
+  .btn-paper {
+    @apply rounded border-2 border-navy-900 bg-ivory-100 px-3 py-2 font-plaque text-[12px] font-semibold uppercase tracking-[0.14em] text-navy-950 shadow-[0_2px_0_#101d36] transition hover:bg-ivory-200 active:translate-y-[1px] active:shadow-none disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .btn-paper--red {
+    @apply border-stamp-700 text-stamp-700 shadow-[0_2px_0_#7f1d15];
+  }
+
+  /* ---------- Pun panel ---------- */
+  .pun-panel {
+    background: linear-gradient(180deg, #e6cf8f, #957637);
+    box-shadow: 0 20px 40px -18px rgba(0, 0, 0, 0.8);
+  }
+  .bonus-chip {
+    @apply rounded-full px-3 py-0.5 font-plaque text-[11px] font-bold tracking-[0.25em] text-ivory-50;
+    background: #c0392b;
+    box-shadow: 0 0 0 2px #e6cf8f, 0 0 16px rgba(192, 57, 43, 0.8);
+    animation: pulse 1.8s ease-in-out infinite;
+  }
+
+  /* ---------- Paper & case file ---------- */
+  .paper {
+    background:
+      repeating-linear-gradient(180deg, transparent 0 27px, rgba(34, 54, 95, 0.06) 27px 28px),
+      radial-gradient(ellipse at 20% 0%, rgba(255, 255, 255, 0.7), transparent 60%),
+      linear-gradient(180deg, #fbf6e6, #f3ead0);
+    color: #1d2b24;
+  }
+  .tag {
+    @apply inline-block rounded-sm border-2 px-2 py-0.5 font-plaque text-[10.5px] font-bold uppercase tracking-[0.14em];
+  }
+  .tag-real {
+    @apply border-forest-700 text-forest-700;
+  }
+  .tag-ext {
+    @apply border-navy-700 text-navy-700;
+  }
+  .tag-hypo {
+    @apply border-stamp-600 bg-stamp-500/10 text-stamp-700;
+  }
+  .tag-rare {
+    @apply border-brass-600 bg-brass-300 text-navy-950;
+  }
+  .stamp {
+    font-family: Oswald, 'Arial Narrow', sans-serif;
+    font-weight: 700;
+    color: #b3261e;
+    border: 4px double #b3261e;
+    border-radius: 6px;
+    padding: 6px 14px;
+    text-align: center;
+    letter-spacing: 0.08em;
+    mix-blend-mode: multiply;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.35) 1px, transparent 1.4px);
+    background-size: 5px 5px;
+  }
+  .fact-panel summary::-webkit-details-marker {
+    color: #22553f;
+  }
+  .section-heading {
+    @apply font-plaque text-[13px] font-bold uppercase tracking-[0.2em] text-brass-300;
+  }
+  .recent-row {
+    @apply flex items-center gap-3 rounded-lg border border-[#c9b98f] bg-ivory-100 px-3 py-2 transition hover:-translate-y-[1px] hover:bg-ivory-50;
+  }
+  .recent-row--current {
+    @apply ring-2 ring-brass-400;
+  }
+}
+
+@keyframes drift {
+  0%, 100% { transform: translate(0, 0) rotate(var(--rot, 0deg)); }
+  50% { transform: translate(18px, -26px) rotate(calc(var(--rot, 0deg) + 4deg)); }
+}
+@keyframes hover {
+  0%, 100% { transform: translateY(0) rotate(-14deg); }
+  50% { transform: translateY(-10px) rotate(-12deg); }
+}
+@keyframes bulbs {
+  0% { background-position: 0 0; }
+  100% { background-position: 9px 0; }
+}
+@keyframes flicker {
+  0%, 91%, 93%, 96%, 100% { opacity: 1; }
+  92%, 94.5% { opacity: 0.25; box-shadow: none; }
+}
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.06); }
+}
+@keyframes reelGlow {
+  from { box-shadow: 0 0 0 3px #1d2b24, 0 0 12px 4px rgba(242, 201, 76, 0.4); }
+  to { box-shadow: 0 0 0 3px #1d2b24, 0 0 26px 10px rgba(242, 201, 76, 0.85); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .drift-paper, .hover-stamp, .marquee-bulbs, .inspection-lamp, .bonus-chip, .reel-highlight {
+    animation: none !important;
+  }
+}

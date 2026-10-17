@@ -1,1 +1,76 @@
-# play
+# The APHIS Assignment Machine
+
+*“Protecting American Agriculture, One Absurdly Specific Assignment at a Time.”*
+
+A satirical three-reel slot machine that hands out urgent, oddly specific federal assignments. It's a tribute to the people at USDA APHIS. It is a parody and is **not** an official USDA or APHIS application.
+
+## Run it
+
+```bash
+npm install
+npm run dev        # local dev server
+npm run build      # production build in dist/ (static; host anywhere)
+npm test           # content-integrity and pun-engine tests
+```
+
+No backend, login, API keys or paid services. Preferences, counters and recent cases are kept in `localStorage`.
+
+## Modes
+
+| Mode | How it rolls | Label |
+|---|---|---|
+| **Surprisingly Real** | Picks one complete, sourced case from `src/data/cases.ts`. Never recombines parts. | Includes an “Actual Federal Concern” panel with sources |
+| **Maximum Bureaucracy** | Picks each reel independently, weighted toward absurd entries | “Hypothetical Assignment — Not Actual Federal Policy” |
+| **USDA Extended Universe** | Unlocks after 5 assignments. Real cases from AMS, ARS and the Forest Service | Names the responsible agency |
+
+## Project layout
+
+```
+src/
+  types.ts                 domain types (Subject, Problem, Objective, CuratedCase, PunEntry…)
+  data/                    content only, kept separate from logic
+    subjects.ts problems.ts objectives.ts   reel content with categories and tags
+    cases.ts               curated real cases → sourceIds
+    sources.ts             every citation
+    puns.ts                the pun library (bespoke, tailored, templates)
+    bureaucracy.ts         statuses, loading messages, trivia, committee generator
+  lib/
+    random.ts              crypto-backed randomInt, Fisher–Yates shuffle, ShuffleBag
+    assignment.ts          rolls assignments, case numbers, fictional burden
+    punEngine.ts           context-sensitive pun selection
+    sound.ts               Web Audio synthesized SFX (muted by default)
+    share.ts storage.ts hooks.ts
+  components/              SlotMachine, Reel, Lever, PunPanel, CaseFile, GameControls, …
+  illustrations/Icons.tsx  original SVG illustrations
+```
+
+## The pun engine
+
+`generatePun()` scores every line in `src/data/puns.ts` against the rolled subject, problem and objective:
+
+1. **Bespoke**: exact subject + problem + objective (every curated case has three).
+2. **Tailored**: the subject plus the problem or objective *category*, or subject-specific lines that use `{P}` / `{O}`.
+3. **Templated**: category templates that use `{S}`.
+
+It takes the top tier, and sometimes the next one down so lines vary. It skips the last 30 puns shown, and **Request Revised Finding** never repeats a line for the same case. Some lines get an administrative-jargon closer. Tokens: `{S}`, `{s}`, `{P}`, `{O}`, `{office}`, `{form}`.
+
+## Adding content
+
+- **A real case**: add any new reel entries (realism `'real'`) and the sources, then add a `CuratedCase` with factual `fact` / `obscureDetail` text only. Add bespoke lines to `BESPOKE` in `puns.ts`. The tests require at least two lines per case, and that every id and source resolves.
+- **A chaos entry**: add it to `problems.ts` / `objectives.ts` with realism `'absurd'`.
+- **A subject**: add it to `subjects.ts` with `traits`, an `icon` (add an SVG to `Icons.tsx` if needed) and three `BY_SUBJECT` lines.
+
+## Accuracy policy
+
+Factual text appears only in the “Actual Federal Concern”, “Did you really just regulate that?” and trivia panels. Each of those cites a public source (APHIS, eCFR, AMS, ARS, USFS and similar). Everything else is labeled as a joke, including statuses, case numbers, paperwork burdens, offices and form numbers. The emblem is an original parody and not a federal seal.
+
+## Fun extras
+
+- **Space** pulls the lever and **R** asks for a revised finding. The lever can also be dragged or clicked.
+- Rare events: *Interagency Jackpot*, *Emergency Regulatory Alignment* and *Agency Reorganization*. To preview one, add `?event=jackpot`, `?event=alignment` or `?event=reorg` to the URL.
+- Click the emblem five times.
+- Respects `prefers-reduced-motion`.
+
+---
+
+This is a parody. Not an official USDA or APHIS application. No actual permits were issued in the making of this assignment.
