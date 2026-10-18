@@ -13,11 +13,11 @@ interface GameControlsProps {
   netBenefits: number;
 }
 
-const MODES: { id: GameMode; label: string; sub: string }[] = [
-  { id: 'real', label: 'Surprisingly Real', sub: 'Curated, sourced, actual' },
-  { id: 'ppd', label: 'PPD Economic Analysis', sub: 'Benefit-cost analysis of the absurd' },
-  { id: 'chaos', label: 'Maximum Bureaucracy', sub: 'Hypothetical. Gloriously so.' },
-  { id: 'extended', label: 'USDA Extended Universe', sub: 'Other agencies. Still real.' },
+const MODES: { id: GameMode; label: string }[] = [
+  { id: 'real', label: 'Surprisingly Real' },
+  { id: 'ppd', label: 'PPD Economic Analysis' },
+  { id: 'chaos', label: 'Maximum Bureaucracy' },
+  { id: 'extended', label: 'USDA Extended Universe' },
 ];
 
 export function GameControls({ mode, onMode, extendedUnlocked, soundOn, onSound, disabled, issued, staffHours, netBenefits }: GameControlsProps) {
@@ -42,7 +42,7 @@ export function GameControls({ mode, onMode, extendedUnlocked, soundOn, onSound,
                 {locked && <span aria-hidden>🔒 </span>}
                 {m.label}
               </span>
-              <span className="font-type text-[11px] opacity-80">{locked ? 'Unlocks after 5 assignments' : m.sub}</span>
+              {locked && <span className="font-type text-[11px] opacity-80">Unlocks after 5 assignments</span>}
             </button>
           );
         })}

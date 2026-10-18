@@ -1,6 +1,6 @@
 # The APHIS Assignment Machine
 
-*“Protecting American Agriculture, One Absurdly Specific Assignment at a Time.”*
+*“Protecting American Agriculture, One Very Specific Assignment at a Time.”*
 
 A satirical three-reel slot machine that hands out urgent, oddly specific federal assignments. It's a tribute to the people at USDA APHIS. It is a parody and is **not** an official USDA or APHIS application.
 

@@ -15,7 +15,7 @@ export function Header({ onEmblemClick, reducedMotion }: { onEmblemClick: () => 
           An Extremely Important Government Randomization Initiative
         </p>
         <p className="mt-2 font-type text-[12px] text-brass-300/80 sm:text-[13px]">
-          “Protecting American Agriculture, One Absurdly Specific Assignment at a Time.”
+          “Protecting American Agriculture, One Very Specific Assignment at a Time.”
         </p>
       </div>
     </header>
